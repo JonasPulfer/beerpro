@@ -1,43 +1,43 @@
 {
   "project_info": {
-    "project_number": "449677194575",
-    "firebase_url": "https://mge-beer-pro.firebaseio.com",
-    "project_id": "mge-beer-pro",
-    "storage_bucket": "mge-beer-pro.appspot.com"
+    "project_number": "579676213491",
+    "firebase_url": "https://miniproject-29ea1.firebaseio.com",
+    "project_id": "miniproject-29ea1",
+    "storage_bucket": "miniproject-29ea1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:449677194575:android:cf92c139ddcef4a8",
+        "mobilesdk_app_id": "1:579676213491:android:cf92c139ddcef4a8",
         "android_client_info": {
           "package_name": "ch.beerpro"
         }
       },
       "oauth_client": [
         {
-          "client_id": "449677194575-lvfb4dfl9o70j3essj07d15djeq4jof5.apps.googleusercontent.com",
+          "client_id": "579676213491-uuq14ruv8d4ohv951936sv3nglcu8vam.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "ch.beerpro",
-            "certificate_hash": "bbb933acdf53fc378eeaa0c932cec9b1db5fd8d7"
+            "certificate_hash": "0201b52c2d063c313f714fcedc2a3c0eecf90e71"
           }
         },
         {
-          "client_id": "449677194575-ogb0ivkadn329eknqlo50d5lhmqgtt54.apps.googleusercontent.com",
+          "client_id": "579676213491-e2kibsgab75pni24nmfroi8ps2lmkk9m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "ch.beerpro",
-            "certificate_hash": "c2b88fedf32cf384a5863f6ed19652d8f3f3b8ca"
+            "certificate_hash": "6ddf27a1bdfef4f0bfaa862fd4d9355be816c53b"
           }
         },
         {
-          "client_id": "449677194575-r12ho5t13vs7db7sgna01d5mv1coo7th.apps.googleusercontent.com",
+          "client_id": "579676213491-rnom61a2ki4u6ft390v6hbisoc785sgj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyArmFIuMbcSz-vkm7GKrK6CxbEcyS5dap8"
+          "current_key": "AIzaSyC_cl6AYHZgP2IyCw7U7IZnoVpvsMXD7HI"
         }
       ],
       "services": {
@@ -48,7 +48,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "449677194575-r12ho5t13vs7db7sgna01d5mv1coo7th.apps.googleusercontent.com",
+              "client_id": "579676213491-rnom61a2ki4u6ft390v6hbisoc785sgj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
