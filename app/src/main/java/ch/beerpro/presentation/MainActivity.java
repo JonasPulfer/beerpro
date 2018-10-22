@@ -114,6 +114,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_logout:
                 logout();
                 return true;
+            case R.id.action_settings:
+                showSettingsActivity();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -125,6 +128,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             finish();
         });
+    }
+
+    private void showSettingsActivity() {
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     @Override
