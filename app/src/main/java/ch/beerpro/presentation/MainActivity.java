@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ch.beerpro.R;
+import ch.beerpro.domain.utils.ThemeUtils;
 import ch.beerpro.presentation.explore.BeerCategoriesFragment;
 import ch.beerpro.presentation.explore.BeerManufacturersFragment;
 import ch.beerpro.presentation.explore.ExploreFragment;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtils.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -114,6 +116,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_logout:
                 logout();
                 return true;
+            case R.id.action_settings:
+                showSettingsActivity();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -125,6 +130,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             finish();
         });
+    }
+
+    private void showSettingsActivity() {
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     @Override
