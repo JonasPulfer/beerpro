@@ -32,12 +32,12 @@ public class MyRefrigeratorActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Mein Kühlschrank");
 
         model = ViewModelProviders.of(this).get(MyRefrigeratorViewModel.class);
-        model.getMyRefrigeratorContent().observe(this, this::updateMyRatings);
+//        model.getMyRefrigeratorContent().observe(this, this::updateMyRatings);
 
         val layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-       adapter = new MyRefrigeratorRecyclerViewAdapter(this, model.getCurrentUser());
+//       adapter = new MyRefrigeratorRecyclerViewAdapter(this, model.getCurrentUser());
         recyclerView.setAdapter(adapter);
     }
 

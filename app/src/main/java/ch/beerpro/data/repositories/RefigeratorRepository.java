@@ -20,12 +20,6 @@ public class RefigeratorRepository {
 
     }
 
-//    public static LiveData<List<Rating>> getRatingsByUser(String userId) {
-//        return new FirestoreQueryLiveDataArray<>(
-//                 FirebaseFirestore.getInstance().collection(Rating.COLLECTION)
-//                .orderBy(Rating.FIELD_CREATION_DATE, Query.Direction.DESCENDING)
-//                .whereEqualTo(Rating.FIELD_USER_ID, userId), Rating.class);
-//    }
-
+    //toggle für Elemente anzupassen oder zu löschen --> siehe WishList
 
 }

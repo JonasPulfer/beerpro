@@ -2,7 +2,7 @@ package ch.beerpro.domain.models;
 
 
 
-public class RefrigeratorTypeOfBeer{
+public class RefrigeratorTypeOfBeer implements Entity{
 
     public static final String COLLECTION = "RefrigeratorTypeOfBeer";
     public static final String FIELD_AMOUNT = "amount";
@@ -10,6 +10,7 @@ public class RefrigeratorTypeOfBeer{
     public static final String FIELD_BEER_NAME = "beerName";
     public static final String FIELD_USER_ID = "beerId";
 
+    private String id;
     private String beerId;
     private String beerName;
     private String userId;
@@ -34,4 +35,13 @@ public class RefrigeratorTypeOfBeer{
         return amount;
     }
 
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
+
+    }
 }
