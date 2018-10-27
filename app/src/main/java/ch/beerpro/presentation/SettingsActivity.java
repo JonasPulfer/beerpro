@@ -5,15 +5,18 @@ import ch.beerpro.R;
 
 import android.os.Bundle;
 import android.widget.CheckBox;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
-import ch.beerpro.domain.utils.ThemeUtils;
+import ch.beerpro.domain.utils.ThemeState;
+import ch.beerpro.domain.utils.ThemeStateService;
 
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtils.onActivityCreateSetTheme(this);
+        ThemeStateService.setThemeForActivity(this);
 
         setContentView(R.layout.activity_settings);
 
@@ -24,14 +27,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         CheckBox darkmodeCheckbox = findViewById(R.id.checkbox_darkmode);
 
-        darkmodeCheckbox.setChecked(ThemeUtils.getCurrentTheme() == 1);
+        darkmodeCheckbox.setChecked(ThemeStateService.getCurrentTheme() == ThemeState.DARK);
 
-        darkmodeCheckbox.setOnCheckedChangeListener((view, value) -> {
-            switchStyleToDark(value);
+        darkmodeCheckbox.setOnCheckedChangeListener((view, dark) -> {
+            //ThemeStateService.changeToTheme(this, dark ? ThemeState.DARK : ThemeState.DEFAULT);
+            Toast.makeText(this, "UNDER CONSTRUCTION", Toast.LENGTH_LONG).show();
         });
-    }
-
-    private void switchStyleToDark(boolean dark) {
-        ThemeUtils.changeToTheme(this, dark ? ThemeUtils.DARK : ThemeUtils.DEFAULT);
     }
 }
