@@ -19,25 +19,26 @@ public class MyFridgeActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    private MyRefrigeratorViewModel model;
-    private MyRefrigeratorRecyclerViewAdapter adapter;
+
+    private MyFridgeViewModel model;
+    private MyFridgeRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_refrigerator);
+        setContentView(R.layout.activity_my_fridge);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Mein Kühlschrank");
 
-        model = ViewModelProviders.of(this).get(MyRefrigeratorViewModel.class);
+        model = ViewModelProviders.of(this).get(MyFridgeViewModel.class);
 //        model.getMyRefrigeratorContent().observe(this, this::updateMyRatings);
 
         val layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-//       adapter = new MyRefrigeratorRecyclerViewAdapter(this, model.getCurrentUser());
+//       adapter = new MyFridgeRecyclerViewAdapter(this, model.getCurrentUser());
         recyclerView.setAdapter(adapter);
     }
 

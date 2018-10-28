@@ -124,6 +124,8 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         dialog.setContentView(view);
         dialog.show();
+//        @OnClick(R.id.addToFridge)
+//                public void onAddToFridgeClicked
     }
 
     private void updateBeer(Beer item) {

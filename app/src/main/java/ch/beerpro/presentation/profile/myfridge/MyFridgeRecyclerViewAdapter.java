@@ -13,19 +13,19 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.ButterKnife;
 import ch.beerpro.R;
-import ch.beerpro.domain.models.RefrigeratorTypeOfBeer;
+import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.presentation.utils.EntityDiffItemCallback;
 
-public class MyRefrigeratorRecyclerViewAdapter extends ListAdapter<RefrigeratorTypeOfBeer, MyRefrigeratorRecyclerViewAdapter.ViewHolder> {
+public class MyFridgeRecyclerViewAdapter extends ListAdapter<FridgeContent, MyFridgeRecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "MyRefrigeratorViewAdap";
 
-    private static final DiffUtil.ItemCallback<RefrigeratorTypeOfBeer> DIFF_CALLBACK = new EntityDiffItemCallback<RefrigeratorTypeOfBeer>();
+    private static final DiffUtil.ItemCallback<FridgeContent> DIFF_CALLBACK = new EntityDiffItemCallback<FridgeContent>();
 
-    private final OnMyRefrigeratorInteractionListener listener;
+    private final OnMyFridgeInteractionListener listener;
     private FirebaseUser user;
 
-    public MyRefrigeratorRecyclerViewAdapter(OnMyRefrigeratorInteractionListener listener, FirebaseUser user){
+    public MyFridgeRecyclerViewAdapter(OnMyFridgeInteractionListener listener, FirebaseUser user){
         super(DIFF_CALLBACK);
         this.listener = listener;
         this.user = user;
@@ -33,15 +33,15 @@ public class MyRefrigeratorRecyclerViewAdapter extends ListAdapter<RefrigeratorT
 
     @NonNull
     @Override
-    public MyRefrigeratorRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyFridgeRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.fragment_my_refrigerator_listenry, parent, false);
+        View view = layoutInflater.inflate(R.layout.fragment_my_fridge_listenry, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyRefrigeratorRecyclerViewAdapter.ViewHolder holder, int position) {
-        RefrigeratorTypeOfBeer entry = getItem(position);
+    public void onBindViewHolder(@NonNull MyFridgeRecyclerViewAdapter.ViewHolder holder, int position) {
+        FridgeContent entry = getItem(position);
         holder.bind(entry, listener);
     }
 
@@ -55,7 +55,7 @@ public class MyRefrigeratorRecyclerViewAdapter extends ListAdapter<RefrigeratorT
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(RefrigeratorTypeOfBeer entry, OnMyRefrigeratorInteractionListener listener) {
+        public void bind(FridgeContent entry, OnMyFridgeInteractionListener listener) {
 
         }
     }
