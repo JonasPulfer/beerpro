@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ch.beerpro.R;
+import ch.beerpro.domain.utils.ThemeStateService;
 import lombok.val;
 
 public class MyRefrigeratorActivity extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class MyRefrigeratorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeStateService.setThemeForActivity(this);
         setContentView(R.layout.activity_my_refrigerator);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);

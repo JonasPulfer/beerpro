@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ch.beerpro.R;
+import ch.beerpro.domain.utils.ThemeState;
 import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.explore.BeerCategoriesFragment;
 import ch.beerpro.presentation.explore.BeerManufacturersFragment;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity
         /*
          * The following ceremony is need to have the app logo set as the home button.
          * */
+        ThemeStateService.setThemeForToolbar(toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -64,8 +66,15 @@ public class MainActivity extends AppCompatActivity
          * Just a placeholder for your own ideas...
          * */
         FloatingActionButton fab = findViewById(R.id.fab);
+
+        if(ThemeStateService.getCurrentTheme(this) == ThemeState.DEFAULT) {
+            fab.setImageResource(R.drawable.ic_photo_camera_brown_24dp);
+        } else {
+            fab.setImageResource(R.drawable.ic_photo_camera_yellow_24dp);
+        }
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
+
     }
 
     private void setupViewPager(ViewPager viewPager, TabLayout tabLayout) {
@@ -75,9 +84,16 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ProfileFragment());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_search_black_24dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_people_black_24dp);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_person_black_24dp);
+
+        if(ThemeStateService.getCurrentTheme(this) == ThemeState.DEFAULT) {
+            tabLayout.getTabAt(0).setIcon(R.drawable.ic_search_black_24dp);
+            tabLayout.getTabAt(1).setIcon(R.drawable.ic_people_black_24dp);
+            tabLayout.getTabAt(2).setIcon(R.drawable.ic_person_black_24dp);
+        } else {
+            tabLayout.getTabAt(0).setIcon(R.drawable.ic_search_yellow_24dp);
+            tabLayout.getTabAt(1).setIcon(R.drawable.ic_people_yellow_24dp);
+            tabLayout.getTabAt(2).setIcon(R.drawable.ic_person_yellow_24dp);
+        }
 
         /*
          * We want to change the title of the activity depending on the selected fragment. We can do this by
