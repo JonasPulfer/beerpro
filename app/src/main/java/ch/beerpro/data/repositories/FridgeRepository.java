@@ -51,7 +51,7 @@ public class FridgeRepository {
             if (task.isSuccessful() && task.getResult().exists()) {
                 return fridgeContentQuery.delete();
             } else if (task.isSuccessful()) {
-                return fridgeContentQuery.set(new FridgeContent(userId, itemId, new Date()));
+                return fridgeContentQuery.set(new FridgeContent(new Date(), userId, itemId));
             } else {
                 throw task.getException();
             }

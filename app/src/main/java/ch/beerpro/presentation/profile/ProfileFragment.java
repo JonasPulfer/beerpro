@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.beerpro.GlideApp;
 import ch.beerpro.R;
+import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
 import ch.beerpro.presentation.MainViewModel;
@@ -72,6 +73,7 @@ public class ProfileFragment extends Fragment {
         model.getMyWishlist().observe(this, this::updateWishlistCount);
         model.getMyRatings().observe(this, this::updateRatingsCount);
         model.getMyBeers().observe(this, this::updateMyBeersCount);
+        model.getMyFridge().observe(this, this::updateFridgeContentCount);
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -121,6 +123,10 @@ public class ProfileFragment extends Fragment {
 
     private void updateWishlistCount(List<Wish> wishes) {
         myWishlistCount.setText(String.valueOf(wishes.size()));
+    }
+
+    private void updateFridgeContentCount(List<FridgeContent> content){
+        myFridgeCount.setText(String.valueOf(content.size()));
     }
 
 }

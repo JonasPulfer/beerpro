@@ -29,17 +29,19 @@ public class FridgeContent implements Entity{
     /**
      * The id is formed by `$userId_$beerId` to make queries easier.
      */
+    @NonNull
+    private Date addedAt;
+
+    private int amount = 1;
+
+    @NonNull
+    private String beerId;
+
     @Exclude
     private String id;
 
     @NonNull
     private String userId;
-
-    @NonNull
-    private String beerId;
-
-    @NonNull
-    private Date addedAt;
 
     public static String generateId(String userId, String beerId) {
         return String.format("%s_%s", userId, beerId);

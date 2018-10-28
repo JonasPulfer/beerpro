@@ -1,7 +1,10 @@
 package ch.beerpro.presentation.profile.myfridge;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
 import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.domain.utils.ThemeStateService;
+import ch.beerpro.presentation.details.DetailsActivity;
 import lombok.val;
 
 public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInteractionListener {
@@ -58,4 +62,16 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
     }
 
 
+    @Override
+    public void onMoreClickedListener(ImageView animationSource, Beer beer) {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra(DetailsActivity.ITEM_ID, beer.getId());
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, animationSource, "image");
+        startActivity(intent, options.toBundle());
+    }
+
+    @Override
+    public void onFridgeContentClickedListener(Beer beer) {
+       // model.
+    }
 }

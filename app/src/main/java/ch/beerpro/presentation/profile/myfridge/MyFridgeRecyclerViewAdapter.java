@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 
 import androidx.annotation.NonNull;
@@ -62,20 +64,23 @@ public class MyFridgeRecyclerViewAdapter extends ListAdapter<Pair<FridgeContent,
         @BindView(R.id.manufacturer)
         TextView manufacturer;
 
-        @BindView(R.id.category)
-        TextView category;
+//        @BindView(R.id.category)
+//        TextView category;
 
         @BindView(R.id.photo)
         ImageView photo;
 
-        @BindView(R.id.ratingBar)
-        RatingBar ratingBar;
+//        @BindView(R.id.ratingBar)
+//        RatingBar ratingBar;
 
-        @BindView(R.id.numRatings)
-        TextView numRatings;
+//        @BindView(R.id.numRatings)
+//        TextView numRatings;
 
         @BindView(R.id.addedAt)
         TextView addedAt;
+
+        @BindView(R.id.amount)
+        TextView amount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,18 +90,19 @@ public class MyFridgeRecyclerViewAdapter extends ListAdapter<Pair<FridgeContent,
         public void bind(FridgeContent content, Beer beer, OnMyFridgeInteractionListener listener) {
             name.setText(beer.getName());
             manufacturer.setText(beer.getManufacturer());
-            category.setText(beer.getCategory());
+//            category.setText(beer.getCategory());
             name.setText(beer.getName());
             GlideApp.with(itemView).load(beer.getPhoto()).apply(new RequestOptions().override(240, 240).centerInside())
                     .into(photo);
-            ratingBar.setNumStars(5);
-            ratingBar.setRating(beer.getAvgRating());
-            numRatings.setText(itemView.getResources().getString(R.string.fmt_num_ratings, beer.getNumRatings()));
-//            itemView.setOnClickListener(v -> listener.onMoreClickedListener(photo, beer));
+//            ratingBar.setNumStars(5);
+//            ratingBar.setRating(beer.getAvgRating());
+//            numRatings.setText(itemView.getResources().getString(R.string.fmt_num_ratings, beer.getNumRatings()));
+            itemView.setOnClickListener(v -> listener.onMoreClickedListener(photo, beer));
 
             String formattedDate =
                     DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT).format(content.getAddedAt());
             addedAt.setText(formattedDate);
+            amount.setText(String.valueOf(content.getAmount()));
 
             //remove Listener
         }
