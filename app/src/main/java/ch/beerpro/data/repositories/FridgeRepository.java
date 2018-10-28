@@ -1,12 +1,20 @@
 package ch.beerpro.data.repositories;
 
+import android.util.Pair;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
 
+import androidx.lifecycle.LiveData;
+import ch.beerpro.domain.models.Beer;
 import ch.beerpro.domain.models.FridgeContent;
+import ch.beerpro.domain.utils.FirestoreQueryLiveData;
+
+import static androidx.lifecycle.Transformations.switchMap;
+import static ch.beerpro.domain.utils.LiveDataExtensions.combineLatest;
 
 public class FridgeRepository {
 
@@ -37,5 +45,20 @@ public class FridgeRepository {
             }
         });
     }
+
+//    private static LiveData<FridgeContent> getUserFridgeFor (Pair<String, Beer> input){
+//        String userId = input.first;
+//        Beer beer = input.second;
+//        DocumentReference document = FirebaseFirestore.getInstance().collection(FridgeContent.COLLECTION)
+//                .document(FridgeContent.generateId(userId, beer.getId()));
+//        return new FirestoreQueryLiveData<>(document, FridgeContent.class);
+//    }
+
+
+//    public LiveData<FridgeContent> getFridgeContentForBeer(LiveData<String> currentUserId, LiveData<Beer> beer){
+//
+//        return switchMap(combineLatest(currentUserId, beer), FridgeRepository::getUserFridgeFor );
+//    }
+
 
 }

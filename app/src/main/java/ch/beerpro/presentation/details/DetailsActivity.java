@@ -25,6 +25,7 @@ import butterknife.OnClick;
 import ch.beerpro.GlideApp;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
+import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
 import ch.beerpro.presentation.details.createrating.CreateRatingActivity;
@@ -77,6 +78,9 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+//    @BindView(R.id.addToFridge)
+//    ToggleButton addToFridge;
+
     private RatingsRecyclerViewAdapter adapter;
 
     private DetailsViewModel model;
@@ -108,6 +112,8 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         model.getRatings().observe(this, this::updateRatings);
         model.getWish().observe(this, this::toggleWishlistView);
 
+        //für Kühlschrank noch zu implementieren
+
 
         recyclerView.setAdapter(adapter);
         addRatingBar.setOnRatingBarChangeListener(this::addNewRating);
@@ -130,8 +136,9 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
 
         Button addToFridgeButton =  view.findViewById(R.id.addToFridge);
         addToFridgeButton.setOnClickListener(param -> {
-            Toast testMessage = Toast.makeText(getApplicationContext(), "added to fridge", Toast.LENGTH_SHORT);
-            testMessage.show();
+            Toast message = Toast.makeText(getApplicationContext(), "added to fridge", Toast.LENGTH_SHORT);
+            message.show();
+            model.toggleItemInFridge(model.getBeer().getValue().getId());
             }
         );
 
@@ -161,6 +168,8 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         model.toggleLike(rating);
     }
 
+
+
     @OnClick(R.id.wishlist)
     public void onWishClickedListener(View view) {
         model.toggleItemInWishlist(model.getBeer().getValue().getId());
@@ -183,6 +192,14 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
             wishlist.setChecked(false);
         }
     }
+
+//    private void toogleFridgeContentView(FridgeContent content){
+//        if (content != null) {
+//            int color = getResources().getColor(R.color.colorPrimary);
+//            setDrawableTint();
+//        }
+//    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
