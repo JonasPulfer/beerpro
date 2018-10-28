@@ -6,9 +6,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -106,6 +108,7 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         model.getRatings().observe(this, this::updateRatings);
         model.getWish().observe(this, this::toggleWishlistView);
 
+
         recyclerView.setAdapter(adapter);
         addRatingBar.setOnRatingBarChangeListener(this::addNewRating);
     }
@@ -124,9 +127,16 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         dialog.setContentView(view);
         dialog.show();
-//        @OnClick(R.id.addToFridge)
-//                public void onAddToFridgeClicked
+
+        Button addToFridgeButton =  view.findViewById(R.id.addToFridge);
+        addToFridgeButton.setOnClickListener(param -> {
+            Toast testMessage = Toast.makeText(getApplicationContext(), "added to fridge", Toast.LENGTH_SHORT);
+            testMessage.show();
+            }
+        );
+
     }
+
 
     private void updateBeer(Beer item) {
         name.setText(item.getName());
