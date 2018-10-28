@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
@@ -23,11 +24,12 @@ import butterknife.OnClick;
 import ch.beerpro.GlideApp;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
+import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
 import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.details.createrating.CreateRatingActivity;
-import com.bumptech.glide.Glide;
+
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -70,11 +72,14 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
     @BindView(R.id.category)
     TextView category;
 
+
     @BindView(R.id.addRatingBar)
     RatingBar addRatingBar;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
+    private ToggleButton addToFridgeButton;
 
     private RatingsRecyclerViewAdapter adapter;
 
@@ -107,6 +112,7 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         model.getBeer().observe(this, this::updateBeer);
         model.getRatings().observe(this, this::updateRatings);
         model.getWish().observe(this, this::toggleWishlistView);
+//        model.getFridgeContent().observe(this, this::toggleAddToFridgeView);
 
         recyclerView.setAdapter(adapter);
         addRatingBar.setOnRatingBarChangeListener(this::addNewRating);
@@ -126,7 +132,18 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         dialog.setContentView(view);
         dialog.show();
+
+        ToggleButton addToFridgeButton = view.findViewById(R.id.addToFridge);
+        addToFridgeButton.setOnClickListener(button -> {
+                    model.toggleItemInFridge(model.getBeer().getValue().getId());
+//                    if (!((ToggleButton) button).isChecked()) {
+//                        toggleAddToFridgeView(null);
+//                    }
+                }
+        );
+
     }
+
 
     private void updateBeer(Beer item) {
         name.setText(item.getName());
@@ -151,6 +168,7 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         model.toggleLike(rating);
     }
 
+
     @OnClick(R.id.wishlist)
     public void onWishClickedListener(View view) {
         model.toggleItemInWishlist(model.getBeer().getValue().getId());
@@ -173,6 +191,19 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
             wishlist.setChecked(false);
         }
     }
+
+//    private void toggleAddToFridgeView(FridgeContent content) {
+//        if (content != null) {
+//            int color = getResources().getColor(R.color.colorPrimary);
+//            setDrawableTint(addToFridgeButton, color);
+//            addToFridgeButton.setChecked(true);
+//        } else {
+//            int color = getResources().getColor(android.R.color.darker_gray);
+//            setDrawableTint(addToFridgeButton, color);
+//            addToFridgeButton.setChecked(false);
+//        }
+//    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

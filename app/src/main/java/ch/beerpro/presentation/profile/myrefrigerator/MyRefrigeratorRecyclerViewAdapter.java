@@ -54,7 +54,7 @@ public class MyRefrigeratorRecyclerViewAdapter extends ListAdapter<RefrigeratorT
     @Override
     public MyRefrigeratorRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.fragment_my_refrigerator_listenry, parent, false);
+        View view = layoutInflater.inflate(R.layout.fragment_my_fridge_listenry, parent, false);
         return new ViewHolder(view);
     }
 

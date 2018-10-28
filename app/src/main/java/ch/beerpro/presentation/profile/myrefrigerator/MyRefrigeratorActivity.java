@@ -27,7 +27,7 @@ public class MyRefrigeratorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeStateService.setThemeForActivity(this);
-        setContentView(R.layout.activity_my_refrigerator);
+        setContentView(R.layout.activity_my_fridge);
         ButterKnife.bind(this);
 
         ThemeStateService.setThemeForToolbar(toolbar, true);
