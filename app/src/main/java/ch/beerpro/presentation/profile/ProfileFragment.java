@@ -21,8 +21,9 @@ import ch.beerpro.presentation.MainViewModel;
 import ch.beerpro.presentation.profile.mybeers.MyBeersActivity;
 import ch.beerpro.domain.models.MyBeer;
 import ch.beerpro.presentation.profile.myratings.MyRatingsActivity;
+import ch.beerpro.presentation.profile.myfridge.MyFridgeActivity;
 import ch.beerpro.presentation.profile.mywishlist.WishlistActivity;
-import com.bumptech.glide.Glide;
+
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -104,6 +105,12 @@ public class ProfileFragment extends Fragment {
     @OnClick(R.id.myBeers)
     public void handleMyBeersClick(View view) {
         Intent intent = new Intent(getActivity(), MyBeersActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.myFridge)
+    public void handleMyFridgeClick(View view){
+        Intent intent = new Intent(getActivity(), MyFridgeActivity.class);
         startActivity(intent);
     }
 

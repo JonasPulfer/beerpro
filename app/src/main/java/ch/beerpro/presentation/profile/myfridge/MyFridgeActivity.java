@@ -1,4 +1,4 @@
-package ch.beerpro.presentation.profile.myrefrigerator;
+package ch.beerpro.presentation.profile.myfridge;
 
 import android.os.Bundle;
 
@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import ch.beerpro.R;
 import lombok.val;
 
-public class MyRefrigeratorActivity extends AppCompatActivity {
+public class MyFridgeActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 

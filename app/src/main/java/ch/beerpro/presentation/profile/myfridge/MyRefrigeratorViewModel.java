@@ -1,6 +1,5 @@
-package ch.beerpro.presentation.profile.myrefrigerator;
+package ch.beerpro.presentation.profile.myfridge;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import ch.beerpro.data.repositories.CurrentUser;
 

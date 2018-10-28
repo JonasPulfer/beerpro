@@ -1,4 +1,4 @@
-package ch.beerpro.presentation.profile.myrefrigerator;
+package ch.beerpro.presentation.profile.myfridge;
 
 public interface OnMyRefrigeratorInteractionListener {
 
