@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
 import ch.beerpro.domain.models.FridgeContent;
+import ch.beerpro.domain.utils.ThemeStateService;
 import lombok.val;
 
 public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInteractionListener {
@@ -32,6 +33,7 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_fridge);
+        ThemeStateService.setThemeForActivity(this);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

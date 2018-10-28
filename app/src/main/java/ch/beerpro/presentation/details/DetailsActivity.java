@@ -27,6 +27,7 @@ import ch.beerpro.domain.models.Beer;
 import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
+import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.details.createrating.CreateRatingActivity;
 
 import com.bumptech.glide.request.RequestOptions;
@@ -87,6 +88,7 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeStateService.setThemeForActivity(this);
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);

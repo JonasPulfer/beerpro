@@ -6,12 +6,9 @@
     <color name="windowBackgroundColor">#fffde7</color>
     <color name="colorAccent">#5d4037</color>
 
-    <color name="dark_colorPrimary">#403b26</color>
-    <color name="dark_colorPrimaryLight">#212101</color>
-    <color name="dark_colorPrimaryDark">#d6cda1</color>
-    <color name="dark_windowBackgroundColor">#333333</color>
-    <color name="dark_colorAccent">#999999</color>
-    <color name="dark_textColorPrimary">#FFFFFF</color>
-    <color name="dark_background">#000000</color>
-    <color name="dark_foreground">#FFFFFF</color>
+    <color name="colorPrimary_dark">#5d4037</color>
+    <color name="colorPrimaryLight_dark">#c6a700</color>
+    <color name="colorPrimaryDark_dark">#ffff6b</color>
+    <color name="windowBackgroundColor_dark">#1D1C1A</color>
+    <color name="colorAccent_dark">#fdd835</color>
 </resources>
