@@ -3,13 +3,9 @@ package ch.beerpro.domain.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.core.content.ContextCompat;
 import ch.beerpro.R;
 
 public class ThemeStateService extends Object {
@@ -26,7 +22,6 @@ public class ThemeStateService extends Object {
         SharedPreferences sharedPreferences = activity.getSharedPreferences("sharedPreferences", 0);
         String currentThemeString = sharedPreferences.getString("theme", "default");
 
-
         if(currentThemeString.equals("default")) {
             activity.setTheme(R.style.AppTheme);
         } else {
@@ -34,16 +29,24 @@ public class ThemeStateService extends Object {
         }
     }
 
-    public static void setThemeForToolbar(Toolbar toolbar) {
+    public static void setThemeForToolbar(Toolbar toolbar, boolean setBackButton) {
         SharedPreferences sharedPreferences = toolbar.getContext().getSharedPreferences("sharedPreferences", 0);
         String currentThemeString = sharedPreferences.getString("theme", "default");
 
         if(currentThemeString.equals("default")) {
+            toolbar.setTitleTextColor(toolbar.getContext().getResources().getColor(R.color.colorAccent));
             toolbar.getContext().setTheme(R.style.ToolBarStyle);
             toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Light);
+            /*if(setBackButton) {
+                toolbar.setNavigationIcon(R.drawable.ic_refrigerator);
+            }*/
         } else {
+            toolbar.setTitleTextColor(toolbar.getContext().getResources().getColor(R.color.colorAccent_dark));
             toolbar.getContext().setTheme(R.style.ToolBarStyle_Dark);
             toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
+            /*if(setBackButton) {
+                toolbar.setNavigationIcon(R.drawable.ic_refrigerator_yellow);
+            }*/
         }
     }
 

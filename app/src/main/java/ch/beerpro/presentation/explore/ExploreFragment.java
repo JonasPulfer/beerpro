@@ -2,19 +2,28 @@ package ch.beerpro.presentation.explore;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import androidx.cardview.widget.CardView;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.beerpro.R;
+import ch.beerpro.domain.utils.ThemeState;
+import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.explore.search.SearchActivity;
 import ch.beerpro.presentation.utils.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.Objects;
 
 /**
  * This fragment is the first fragment shown in the {@link ch.beerpro.presentation.MainActivity}. It lets users

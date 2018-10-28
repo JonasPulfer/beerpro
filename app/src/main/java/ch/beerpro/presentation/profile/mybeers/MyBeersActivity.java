@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+
+import java.security.spec.PSSParameterSpec;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -14,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
+import ch.beerpro.domain.utils.ThemeState;
 import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.details.DetailsActivity;
 
@@ -30,6 +34,9 @@ public class MyBeersActivity extends AppCompatActivity implements OnMyBeerItemIn
         ThemeStateService.setThemeForActivity(this);
         setContentView(R.layout.activity_my_beers);
         ButterKnife.bind(this);
+
+        ThemeStateService.setThemeForToolbar(toolbar, true);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.title_activity_mybeers));

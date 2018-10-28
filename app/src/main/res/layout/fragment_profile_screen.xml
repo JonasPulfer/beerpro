@@ -57,9 +57,10 @@
                 android:focusable="true">
 
                 <ImageView
+                    android:id="@+id/myBeersIcon"
                     android:layout_width="24dp"
-                    android:layout_height="24dp"
 
+                    android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/minimum_margin"
                     app:srcCompat="@drawable/ic_bottle" />
@@ -98,9 +99,10 @@
                 android:focusable="true">
 
                 <ImageView
+                    android:id="@+id/myRatingsIcon"
                     android:layout_width="24dp"
-                    android:layout_height="24dp"
 
+                    android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/minimum_margin"
                     app:srcCompat="@drawable/ic_star_brown_24dp" />
@@ -140,9 +142,10 @@
                 android:focusable="true">
 
                 <ImageView
+                    android:id="@+id/myWishlistIcon"
                     android:layout_width="24dp"
-                    android:layout_height="24dp"
 
+                    android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/minimum_margin"
                     app:srcCompat="@drawable/ic_bookmark_brown_24dp" />
@@ -182,9 +185,10 @@
                 android:focusable="true">
 
                 <ImageView
+                    android:id="@+id/myFridgeIcon"
                     android:layout_width="24dp"
-                    android:layout_height="24dp"
 
+                    android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/minimum_margin"
                     app:srcCompat="@drawable/ic_refrigerator" />

@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         /*
          * The following ceremony is need to have the app logo set as the home button.
          * */
-        ThemeStateService.setThemeForToolbar(toolbar);
+        ThemeStateService.setThemeForToolbar(toolbar, false);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);

@@ -17,6 +17,8 @@ import ch.beerpro.GlideApp;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
+import ch.beerpro.domain.utils.ThemeState;
+import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.MainViewModel;
 import ch.beerpro.presentation.profile.mybeers.MyBeersActivity;
 import ch.beerpro.domain.models.MyBeer;
@@ -80,6 +82,24 @@ public class ProfileFragment extends Fragment {
             userProfileNameText.setText(name);
             Uri photoUrl = user.getPhotoUrl();
             GlideApp.with(this).load(photoUrl).apply(new RequestOptions().circleCrop()).into(userProfileImageView);
+        }
+
+        ImageView myBeersIcon = rootView.findViewById(R.id.myBeersIcon);
+        ImageView myRatingsIcon = rootView.findViewById(R.id.myRatingsIcon);
+        ImageView myWishlistIcon = rootView.findViewById(R.id.myWishlistIcon);
+        ImageView myFridgeIcon = rootView.findViewById(R.id.myFridgeIcon);
+
+
+        if(ThemeStateService.getCurrentTheme(getActivity()) == ThemeState.DEFAULT) {
+            myBeersIcon.setImageResource(R.drawable.ic_bottle);
+            myRatingsIcon.setImageResource(R.drawable.ic_star_brown_24dp);
+            myWishlistIcon.setImageResource(R.drawable.ic_bookmark_brown_24dp);
+            myFridgeIcon.setImageResource(R.drawable.ic_refrigerator);
+        } else {
+            myBeersIcon.setImageResource(R.drawable.ic_bottle_yellow);
+            myRatingsIcon.setImageResource(R.drawable.ic_star_yellow_24dp);
+            myWishlistIcon.setImageResource(R.drawable.ic_bookmark_yellow_24dp);
+            myFridgeIcon.setImageResource(R.drawable.ic_refrigerator_yellow);
         }
 
         return rootView;

@@ -20,7 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         Toolbar toolbar = findViewById(R.id.toolbar2);
-        ThemeStateService.setThemeForToolbar(toolbar);
+        ThemeStateService.setThemeForToolbar(toolbar, true);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -43,6 +43,9 @@ public class WishlistActivity extends AppCompatActivity implements OnWishlistIte
         ThemeStateService.setThemeForActivity(this);
         setContentView(R.layout.activity_my_wishlist);
         ButterKnife.bind(this);
+
+        ThemeStateService.setThemeForToolbar(toolbar, true);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.title_activity_wishlist));

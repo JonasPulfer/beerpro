@@ -29,6 +29,9 @@ public class MyRefrigeratorActivity extends AppCompatActivity {
         ThemeStateService.setThemeForActivity(this);
         setContentView(R.layout.activity_my_refrigerator);
         ButterKnife.bind(this);
+
+        ThemeStateService.setThemeForToolbar(toolbar, true);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Mein Kühlschrank");
