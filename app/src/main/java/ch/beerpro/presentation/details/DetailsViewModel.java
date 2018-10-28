@@ -18,7 +18,7 @@ public class DetailsViewModel extends ViewModel implements CurrentUser {
     private final LiveData<Beer> beer;
     private final LiveData<List<Rating>> ratings;
     private final LiveData<Wish> wish;
-   // private final LiveData<FridgeContent> fridgeContent;
+    private final LiveData<FridgeContent> fridgeContent;
 
     private final LikesRepository likesRepository;
     private final WishlistRepository wishlistRepository;
@@ -36,7 +36,7 @@ public class DetailsViewModel extends ViewModel implements CurrentUser {
         beer = beersRepository.getBeer(beerId);
         wish = wishlistRepository.getMyWishForBeer(currentUserId, getBeer());
         ratings = ratingsRepository.getRatingsForBeer(beerId);
-//        fridgeContent = fridgeRepository.getFridgeContentForBeer(currentUserId, getBeer());
+        fridgeContent = fridgeRepository.getSpecificFridgeContent(currentUserId, getBeer());
     }
 
     public LiveData<Beer> getBeer() {
@@ -51,9 +51,9 @@ public class DetailsViewModel extends ViewModel implements CurrentUser {
         return ratings;
     }
 
-//    public LiveData<FridgeContent> getFridgeContent() {
-//        return fridgeContent;
-//    }
+    public LiveData<FridgeContent> getFridgeContent() {
+        return fridgeContent;
+    }
 
     public void setBeerId(String beerId) {
         this.beerId.setValue(beerId);

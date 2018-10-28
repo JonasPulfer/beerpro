@@ -1,6 +1,9 @@
 package ch.beerpro.presentation.profile.myfridge;
 
 import android.os.Bundle;
+import android.util.Pair;
+
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ch.beerpro.R;
+import ch.beerpro.domain.models.Beer;
+import ch.beerpro.domain.models.FridgeContent;
 import lombok.val;
 
-public class MyFridgeActivity extends AppCompatActivity {
+public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInteractionListener {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -33,15 +38,22 @@ public class MyFridgeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Mein Kühlschrank");
 
         model = ViewModelProviders.of(this).get(MyFridgeViewModel.class);
-//        model.getMyRefrigeratorContent().observe(this, this::updateMyRatings);
+        model.getWholeFridgeWithBeers().observe(this, this::updateMyFridge);
 
         val layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-//       adapter = new MyFridgeRecyclerViewAdapter(this, model.getCurrentUser());
-        recyclerView.setAdapter(adapter);
+       adapter = new MyFridgeRecyclerViewAdapter(this);
+       recyclerView.setAdapter(adapter);
+
     }
 
+
+    private void updateMyFridge(List<Pair<FridgeContent, Beer>> entries){
+        adapter.submitList(entries);
+
+        //Ansicht, wenn keine Einträge!!
+    }
 
 
 }
