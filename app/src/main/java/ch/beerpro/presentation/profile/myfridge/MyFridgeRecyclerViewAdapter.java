@@ -72,6 +72,12 @@ public class MyFridgeRecyclerViewAdapter extends ListAdapter<Pair<FridgeContent,
         @BindView(R.id.removeFromFridge)
         Button removeButton;
 
+        @BindView(R.id.increaseAmount)
+        Button increaseAmountButton;
+
+        @BindView(R.id.decreaseAmount)
+        Button decreaseAmountButton;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -90,6 +96,12 @@ public class MyFridgeRecyclerViewAdapter extends ListAdapter<Pair<FridgeContent,
             addedAt.setText(formattedDate);
             amount.setText(String.valueOf(content.getAmount()));
             removeButton.setOnClickListener(v -> listener.onRemoveButtonClickedListener(content.getUserId(), content.getBeerId()));
+            increaseAmountButton.setOnClickListener(
+                    v -> listener.onIncreaseAmountClickedListener(content.getAmount(), content.getUserId(), content.getBeerId())
+            );
+            decreaseAmountButton.setOnClickListener(v ->
+                    listener.onDecreaseAmountClickedListener(content.getAmount(), content.getUserId(), content.getBeerId())
+            );
 
         }
     }

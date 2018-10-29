@@ -36,5 +36,11 @@ public class MyFridgeViewModel extends ViewModel implements CurrentUser {
         fridgeRepository.toggleUserFridgeItem(userId, beerId);
     }
 
-
+    public void setNewAmount(int newAmount, String userId, String beerId){
+        if(newAmount != 0){
+            fridgeRepository.setNewAmount(newAmount, userId, beerId);
+        } else{
+            fridgeRepository.toggleUserFridgeItem(userId, beerId);
+        }
+    }
 }
