@@ -64,17 +64,8 @@ public class MyFridgeRecyclerViewAdapter extends ListAdapter<Pair<FridgeContent,
         @BindView(R.id.manufacturer)
         TextView manufacturer;
 
-//        @BindView(R.id.category)
-//        TextView category;
-
         @BindView(R.id.photo)
         ImageView photo;
-
-//        @BindView(R.id.ratingBar)
-//        RatingBar ratingBar;
-
-//        @BindView(R.id.numRatings)
-//        TextView numRatings;
 
         @BindView(R.id.addedAt)
         TextView addedAt;

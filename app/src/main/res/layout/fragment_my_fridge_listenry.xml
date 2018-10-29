@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/content_beer_listentry_base" />
+        <include layout="@layout/content_beer_listentry_base_myfridge" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

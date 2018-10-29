@@ -16,6 +16,7 @@ import ch.beerpro.domain.models.FridgeContent;
 public class MyFridgeViewModel extends ViewModel implements CurrentUser {
 
     private static final String TAG = "MyFridgeViewModel";
+
     private final MutableLiveData<String> currentUserId = new MutableLiveData<>();
     private final FridgeRepository fridgeRepository;
     private final BeersRepository beersRepository;

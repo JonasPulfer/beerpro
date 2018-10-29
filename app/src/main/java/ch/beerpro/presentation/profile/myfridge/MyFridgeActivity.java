@@ -50,6 +50,7 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
         recyclerView.setLayoutManager(layoutManager);
 
        adapter = new MyFridgeRecyclerViewAdapter(this);
+
        recyclerView.setAdapter(adapter);
 
     }
@@ -58,20 +59,20 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
     private void updateMyFridge(List<Pair<FridgeContent, Beer>> entries){
         adapter.submitList(entries);
 
-        //Ansicht, wenn keine Einträge!!
+        //tbd: Ansicht, wenn keine Einträge!!
     }
 
 
     @Override
     public void onMoreClickedListener(ImageView animationSource, Beer beer) {
-        Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra(DetailsActivity.ITEM_ID, beer.getId());
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, animationSource, "image");
-        startActivity(intent, options.toBundle());
+//        Intent intent = new Intent(this, DetailsActivity.class);
+//        intent.putExtra(DetailsActivity.ITEM_ID, beer.getId());
+//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, animationSource, "image");
+//        startActivity(intent, options.toBundle());
     }
 
     @Override
     public void onFridgeContentClickedListener(Beer beer) {
-       // model.
+       // tbd
     }
 }

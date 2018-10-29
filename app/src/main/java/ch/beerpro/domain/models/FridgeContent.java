@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 public class FridgeContent implements Entity{
 
-    public static final String COLLECTION = "refrigeratorContent";
+    public static final String COLLECTION = "fridgeContent";
     public static final String FIELD_ADDED_AT = "addedAt";
     public static final String FIELD_AMOUNT = "amount";
     public static final String FIELD_BEER_ID = "beerId";

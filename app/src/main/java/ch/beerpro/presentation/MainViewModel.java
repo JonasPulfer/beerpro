@@ -1,5 +1,6 @@
 package ch.beerpro.presentation;
 
+import android.util.Log;
 import android.util.Pair;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

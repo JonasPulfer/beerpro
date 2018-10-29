@@ -1,5 +1,6 @@
 package ch.beerpro.data.repositories;
 
+import android.util.Log;
 import android.util.Pair;
 
 import com.google.android.gms.tasks.Task;
@@ -26,6 +27,7 @@ import static ch.beerpro.domain.utils.LiveDataExtensions.combineLatest;
 public class FridgeRepository {
 
    private static LiveData<List<FridgeContent>> getAllFridgeContentInstancesForUser(String userId) {
+       Log.d("MyTag", userId);
        return new FirestoreQueryLiveDataArray<>(FirebaseFirestore.getInstance().collection(FridgeContent.COLLECTION)
                .orderBy(FridgeContent.FIELD_ADDED_AT, Query.Direction.DESCENDING)
                .whereEqualTo(FridgeContent.FIELD_USER_ID, userId), FridgeContent.class);
@@ -41,9 +43,9 @@ public class FridgeRepository {
         return new FirestoreQueryLiveData<>(document, FridgeContent.class);
     }
 
-    public Task<Void> toggleUserFridgeItem(String userId, String itemId) {
+    public Task<Void> toggleUserFridgeItem(String userId, String beerId) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String fridgeContentId = FridgeContent.generateId(userId, itemId);
+        String fridgeContentId = FridgeContent.generateId(userId, beerId);
 
         DocumentReference fridgeContentQuery = db.collection(FridgeContent.COLLECTION).document(fridgeContentId);
 
@@ -51,7 +53,7 @@ public class FridgeRepository {
             if (task.isSuccessful() && task.getResult().exists()) {
                 return fridgeContentQuery.delete();
             } else if (task.isSuccessful()) {
-                return fridgeContentQuery.set(new FridgeContent(new Date(), userId, itemId));
+                return fridgeContentQuery.set(new FridgeContent(new Date(), beerId, userId));
             } else {
                 throw task.getException();
             }
@@ -67,7 +69,7 @@ public class FridgeRepository {
                     HashMap<String, Beer> beersById = input.second;
 
                     ArrayList<Pair<FridgeContent, Beer>> result = new ArrayList<>();
-                    for (FridgeContent content: wholeContent){
+                    for (FridgeContent content : wholeContent){
                         Beer beer = beersById.get(content.getBeerId());
                         result.add(Pair.create(content, beer));
                     }
