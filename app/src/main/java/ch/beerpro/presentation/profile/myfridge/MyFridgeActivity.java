@@ -4,6 +4,8 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -29,6 +31,9 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
+    @BindView(R.id.emptyView)
+    View emptyView;
 
     private MyFridgeViewModel model;
     private MyFridgeRecyclerViewAdapter adapter;
@@ -59,7 +64,27 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
     private void updateMyFridge(List<Pair<FridgeContent, Beer>> entries){
         adapter.submitList(entries);
 
+        if (entries.isEmpty()) {
+            emptyView.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            emptyView.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+
         //tbd: Ansicht, wenn keine Einträge!!
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                supportFinishAfterTransition();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
@@ -74,5 +99,17 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
     @Override
     public void onRemoveButtonClickedListener(String userId, String beerId) {
        model.removeBeerFromFridge(userId, beerId);
+    }
+
+
+
+    @Override
+    public void onIncreaseAmountClickedListener(int oldAmount, String userId, String beerId) {
+
+    }
+
+    @Override
+    public void onDecreaseAmountClickedListener(int oldAmount, String userId, String beerId) {
+
     }
 }

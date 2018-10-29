@@ -86,5 +86,20 @@ public class FridgeRepository {
         return switchMap(combineLatest(currentUserId, beer), FridgeRepository::getSpecificFridgeContent);
     }
 
+//    public Task<Void> setNewAmount(int newAmount, String userId, String beerId){
+//       FirebaseFirestore db = FirebaseFirestore.getInstance();
+//       String fridgeContentId = FridgeContent.generateId(userId, beerId);
+//
+//       DocumentReference fridgeContentQuery = db.collection(FridgeContent.COLLECTION).document(fridgeContentId);
+//
+//       return fridgeContentQuery.get().continueWithTask(task -> {
+//                    if(task.isSuccessful()){
+//                        return fridgeContentQuery
+//                    }
+//               }
+//
+//       );
+//    }
+
 
 }
