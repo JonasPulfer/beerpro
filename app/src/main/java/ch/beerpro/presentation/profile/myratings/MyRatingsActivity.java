@@ -37,12 +37,11 @@ public class MyRatingsActivity extends AppCompatActivity implements OnMyRatingIt
         setContentView(R.layout.activity_my_ratings);
         ButterKnife.bind(this);
 
-        ThemeStateService.setThemeForToolbar(toolbar, true);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.title_activity_myratings));
 
+        ThemeStateService.setThemeForToolbar(toolbar, true);
 
         model = ViewModelProviders.of(this).get(MyRatingsViewModel.class);
         model.getMyRatingsWithWishes().observe(this, this::updateMyRatings);

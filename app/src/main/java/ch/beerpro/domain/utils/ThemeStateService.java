@@ -3,6 +3,7 @@ package ch.beerpro.domain.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -37,16 +38,18 @@ public class ThemeStateService extends Object {
             toolbar.setTitleTextColor(toolbar.getContext().getResources().getColor(R.color.colorAccent));
             toolbar.getContext().setTheme(R.style.ToolBarStyle);
             toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Light);
-            /*if(setBackButton) {
-                toolbar.setNavigationIcon(R.drawable.ic_refrigerator);
-            }*/
+            if(toolbar.getNavigationIcon() != null) {
+                toolbar.getNavigationIcon().setColorFilter(toolbar.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+                toolbar.getOverflowIcon().setColorFilter(toolbar.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+            }
         } else {
             toolbar.setTitleTextColor(toolbar.getContext().getResources().getColor(R.color.colorAccent_dark));
             toolbar.getContext().setTheme(R.style.ToolBarStyle_Dark);
             toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
-            /*if(setBackButton) {
-                toolbar.setNavigationIcon(R.drawable.ic_refrigerator_yellow);
-            }*/
+            if(toolbar.getNavigationIcon() != null) {
+                toolbar.getNavigationIcon().setColorFilter(toolbar.getContext().getResources().getColor(R.color.colorAccent_dark), PorterDuff.Mode.SRC_ATOP);
+                toolbar.getOverflowIcon().setColorFilter(toolbar.getContext().getResources().getColor(R.color.colorAccent_dark), PorterDuff.Mode.SRC_ATOP);
+            }
         }
     }
 

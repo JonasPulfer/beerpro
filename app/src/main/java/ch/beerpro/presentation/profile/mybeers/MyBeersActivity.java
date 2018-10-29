@@ -2,6 +2,7 @@ package ch.beerpro.presentation.profile.mybeers;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +18,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
-import ch.beerpro.domain.utils.ThemeState;
 import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.details.DetailsActivity;
 
@@ -35,11 +35,11 @@ public class MyBeersActivity extends AppCompatActivity implements OnMyBeerItemIn
         setContentView(R.layout.activity_my_beers);
         ButterKnife.bind(this);
 
-        ThemeStateService.setThemeForToolbar(toolbar, true);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.title_activity_mybeers));
+
+        ThemeStateService.setThemeForToolbar(toolbar, true);
 
         model = ViewModelProviders.of(this).get(MyBeersViewModel.class);
     }
