@@ -5,14 +5,11 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.google.firebase.auth.FirebaseUser;
-
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 
@@ -26,7 +23,6 @@ import ch.beerpro.GlideApp;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
 import ch.beerpro.domain.models.FridgeContent;
-import ch.beerpro.presentation.utils.EntityDiffItemCallback;
 import ch.beerpro.presentation.utils.EntityPairDiffItemCallback;
 
 public class MyFridgeRecyclerViewAdapter extends ListAdapter<Pair<FridgeContent, Beer>, MyFridgeRecyclerViewAdapter.ViewHolder> {
@@ -73,6 +69,9 @@ public class MyFridgeRecyclerViewAdapter extends ListAdapter<Pair<FridgeContent,
         @BindView(R.id.amount)
         TextView amount;
 
+        @BindView(R.id.removeFromFridge)
+        Button removeButton;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -81,21 +80,17 @@ public class MyFridgeRecyclerViewAdapter extends ListAdapter<Pair<FridgeContent,
         public void bind(FridgeContent content, Beer beer, OnMyFridgeInteractionListener listener) {
             name.setText(beer.getName());
             manufacturer.setText(beer.getManufacturer());
-//            category.setText(beer.getCategory());
             name.setText(beer.getName());
             GlideApp.with(itemView).load(beer.getPhoto()).apply(new RequestOptions().override(240, 240).centerInside())
                     .into(photo);
-//            ratingBar.setNumStars(5);
-//            ratingBar.setRating(beer.getAvgRating());
-//            numRatings.setText(itemView.getResources().getString(R.string.fmt_num_ratings, beer.getNumRatings()));
             itemView.setOnClickListener(v -> listener.onMoreClickedListener(photo, beer));
 
             String formattedDate =
                     DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT).format(content.getAddedAt());
             addedAt.setText(formattedDate);
             amount.setText(String.valueOf(content.getAmount()));
+            removeButton.setOnClickListener(v -> listener.onRemoveButtonClickedListener(content.getUserId(), content.getBeerId()));
 
-            //remove Listener
         }
     }
 }

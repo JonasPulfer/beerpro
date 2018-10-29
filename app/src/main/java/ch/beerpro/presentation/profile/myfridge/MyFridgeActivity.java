@@ -65,14 +65,14 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
 
     @Override
     public void onMoreClickedListener(ImageView animationSource, Beer beer) {
-//        Intent intent = new Intent(this, DetailsActivity.class);
-//        intent.putExtra(DetailsActivity.ITEM_ID, beer.getId());
-//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, animationSource, "image");
-//        startActivity(intent, options.toBundle());
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra(DetailsActivity.ITEM_ID, beer.getId());
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, animationSource, "image");
+        startActivity(intent, options.toBundle());
     }
 
     @Override
-    public void onFridgeContentClickedListener(Beer beer) {
-       // tbd
+    public void onRemoveButtonClickedListener(String userId, String beerId) {
+       model.removeBeerFromFridge(userId, beerId);
     }
 }

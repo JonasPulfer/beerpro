@@ -32,5 +32,9 @@ public class MyFridgeViewModel extends ViewModel implements CurrentUser {
         return fridgeRepository.getWholeFridgeWithBeers(currentUserId, beersRepository.getAllBeers());
     }
 
+    public void removeBeerFromFridge(String userId, String beerId){
+        fridgeRepository.toggleUserFridgeItem(userId, beerId);
+    }
+
 
 }

@@ -27,7 +27,6 @@ import static ch.beerpro.domain.utils.LiveDataExtensions.combineLatest;
 public class FridgeRepository {
 
    private static LiveData<List<FridgeContent>> getAllFridgeContentInstancesForUser(String userId) {
-       Log.d("MyTag", userId);
        return new FirestoreQueryLiveDataArray<>(FirebaseFirestore.getInstance().collection(FridgeContent.COLLECTION)
                .orderBy(FridgeContent.FIELD_ADDED_AT, Query.Direction.DESCENDING)
                .whereEqualTo(FridgeContent.FIELD_USER_ID, userId), FridgeContent.class);
