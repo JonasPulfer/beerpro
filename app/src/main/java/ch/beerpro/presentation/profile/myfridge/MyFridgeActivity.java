@@ -105,11 +105,11 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
 
     @Override
     public void onIncreaseAmountClickedListener(int oldAmount, String userId, String beerId) {
-
+        model.setNewAmount(++oldAmount, userId, beerId);
     }
 
     @Override
     public void onDecreaseAmountClickedListener(int oldAmount, String userId, String beerId) {
-
+        model.setNewAmount(--oldAmount, userId, beerId);
     }
 }
