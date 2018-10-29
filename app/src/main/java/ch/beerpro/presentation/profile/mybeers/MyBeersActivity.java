@@ -39,7 +39,7 @@ public class MyBeersActivity extends AppCompatActivity implements OnMyBeerItemIn
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.title_activity_mybeers));
 
-        ThemeStateService.setThemeForToolbar(toolbar, true);
+        ThemeStateService.setThemeForToolbar(toolbar);
 
         model = ViewModelProviders.of(this).get(MyBeersViewModel.class);
     }

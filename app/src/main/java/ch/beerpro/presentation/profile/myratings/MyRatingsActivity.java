@@ -41,7 +41,7 @@ public class MyRatingsActivity extends AppCompatActivity implements OnMyRatingIt
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.title_activity_myratings));
 
-        ThemeStateService.setThemeForToolbar(toolbar, true);
+        ThemeStateService.setThemeForToolbar(toolbar);
 
         model = ViewModelProviders.of(this).get(MyRatingsViewModel.class);
         model.getMyRatingsWithWishes().observe(this, this::updateMyRatings);

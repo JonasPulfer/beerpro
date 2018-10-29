@@ -48,7 +48,7 @@ public class WishlistActivity extends AppCompatActivity implements OnWishlistIte
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.title_activity_wishlist));
 
-        ThemeStateService.setThemeForToolbar(toolbar, true);
+        ThemeStateService.setThemeForToolbar(toolbar);
 
         model = ViewModelProviders.of(this).get(WishlistViewModel.class);
         model.getMyWishlistWithBeers().observe(this, this::updateWishlist);

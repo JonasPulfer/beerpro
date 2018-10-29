@@ -48,7 +48,7 @@ public class MyFridgeActivity extends AppCompatActivity implements OnMyFridgeInt
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Mein Kühlschrank");
 
-        ThemeStateService.setThemeForToolbar(toolbar, true);
+        ThemeStateService.setThemeForToolbar(toolbar);
 
         model = ViewModelProviders.of(this).get(MyFridgeViewModel.class);
         model.getWholeFridgeWithBeers().observe(this, this::updateMyFridge);
