@@ -44,6 +44,7 @@ public class ThemeStateService extends Object {
         String currentThemeString = sharedPreferences.getString("theme", "default");
 
         if(currentThemeString.equals("default")) {
+            toolbar.setBackgroundColor(toolbar.getContext().getResources().getColor(R.color.colorPrimary));
             toolbar.setTitleTextColor(toolbar.getContext().getResources().getColor(R.color.colorAccent));
             toolbar.getContext().setTheme(R.style.ToolBarStyle);
             toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Light);
@@ -51,6 +52,7 @@ public class ThemeStateService extends Object {
                 toolbar.getNavigationIcon().setColorFilter(toolbar.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
             }
         } else {
+            toolbar.setBackgroundColor(toolbar.getContext().getResources().getColor(R.color.colorPrimary_dark));
             toolbar.setTitleTextColor(toolbar.getContext().getResources().getColor(R.color.colorAccent_dark));
             toolbar.getContext().setTheme(R.style.ToolBarStyle_Dark);
             toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);

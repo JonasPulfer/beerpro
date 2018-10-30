@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -63,6 +64,14 @@ public class ExploreFragment extends Fragment {
         adapter.addFragment(new BeerManufacturersFragment(), "Brauerei");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        Drawable img;
+        if(ThemeStateService.getCurrentTheme() == ThemeState.DEFAULT) {
+            img = getContext().getResources().getDrawable(R.drawable.ic_search_black_24dp);
+        } else {
+            img = getContext().getResources().getDrawable(R.drawable.ic_search_yellow_24dp);
+        }
+        ((TextView)rootView.findViewById(R.id.beerSearchButton)).setCompoundDrawablesWithIntrinsicBounds( img, null, null, null);
 
         return rootView;
     }

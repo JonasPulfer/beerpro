@@ -116,6 +116,8 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
 
         recyclerView.setAdapter(adapter);
         addRatingBar.setOnRatingBarChangeListener(this::addNewRating);
+
+
     }
 
     private void addNewRating(RatingBar ratingBar, float v, boolean b) {
