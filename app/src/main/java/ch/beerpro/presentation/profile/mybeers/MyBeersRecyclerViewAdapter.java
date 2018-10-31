@@ -17,6 +17,7 @@ import ch.beerpro.GlideApp;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
 import ch.beerpro.domain.models.MyBeer;
+import ch.beerpro.domain.models.MyBeerFromFridge;
 import ch.beerpro.domain.models.MyBeerFromRating;
 import ch.beerpro.domain.models.MyBeerFromWishlist;
 import ch.beerpro.presentation.utils.DrawableHelpers;
@@ -92,6 +93,9 @@ public class MyBeersRecyclerViewAdapter extends ListAdapter<MyBeer, MyBeersRecyc
         @BindView(R.id.onTheListSince)
         TextView onTheListSince;
 
+        @BindView(R.id.addToFridge)
+        Button addToFridge;
+
         @BindView(R.id.removeFromWishlist)
         Button removeFromWishlist;
 
@@ -114,7 +118,8 @@ public class MyBeersRecyclerViewAdapter extends ListAdapter<MyBeer, MyBeersRecyc
             ratingBar.setRating(item.getAvgRating());
             numRatings.setText(itemView.getResources().getString(R.string.fmt_num_ratings, item.getNumRatings()));
             itemView.setOnClickListener(v -> listener.onMoreClickedListener(photo, item));
-            removeFromWishlist.setOnClickListener(v -> listener.onWishClickedListener(item));
+
+           addToFridge.setOnClickListener(v -> listener.onAddToFridgeClickedListener(item));
 
             String formattedDate =
                     DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT).format(entry.getDate());
@@ -124,11 +129,17 @@ public class MyBeersRecyclerViewAdapter extends ListAdapter<MyBeer, MyBeersRecyc
                 DrawableHelpers
                         .setDrawableTint(removeFromWishlist, itemView.getResources().getColor(R.color.colorPrimary));
                 onTheListSince.setText("auf der Wunschliste seit");
+                removeFromWishlist.setOnClickListener(v -> listener.onWishClickedListener(item));
             } else if (entry instanceof MyBeerFromRating) {
                 DrawableHelpers.setDrawableTint(removeFromWishlist,
                         itemView.getResources().getColor(android.R.color.darker_gray));
                 removeFromWishlist.setText("Wunschliste");
                 onTheListSince.setText("beurteilt am");
+            } else if (entry instanceof MyBeerFromFridge){
+                onTheListSince.setText("im Kühlschrank seit");
+                removeFromWishlist.setOnClickListener(v -> listener.onRemoveFromFridgeClickedListener(item));
+                addToFridge.setVisibility(View.GONE);
+
             }
         }
     }

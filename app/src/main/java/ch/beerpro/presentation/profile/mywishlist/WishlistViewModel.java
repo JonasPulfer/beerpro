@@ -42,6 +42,7 @@ public class WishlistViewModel extends ViewModel implements CurrentUser {
     }
 
     public Task<Void> toggleUserFridgeItem(String beerId){
+        wishlistRepository.toggleUserWishlistItem(getCurrentUser().getUid(), beerId);
         return fridgeRepository.toggleUserFridgeItem(getCurrentUser().getUid(), beerId);
     }
 
