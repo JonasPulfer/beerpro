@@ -65,6 +65,7 @@ public class ExploreFragment extends Fragment {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        // Hardcoded because of API-Version
         Drawable img;
         if(ThemeStateService.getCurrentTheme() == ThemeState.DEFAULT) {
             img = getContext().getResources().getDrawable(R.drawable.ic_search_black_24dp);

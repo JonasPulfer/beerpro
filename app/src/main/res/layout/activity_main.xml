@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:titleTextColor="?attr/colorAccent"
             android:theme="@style/ToolBarStyle"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -23,7 +24,8 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:tabIconTint="?attr/colorAccent" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -39,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:tint="?attr/colorAccent"
         app:backgroundTint="?attr/colorPrimary"
         app:srcCompat="@drawable/ic_photo_camera_brown_24dp" />
 

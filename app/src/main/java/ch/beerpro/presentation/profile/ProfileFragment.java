@@ -94,17 +94,17 @@ public class ProfileFragment extends Fragment {
         ImageView myFridgeIcon = rootView.findViewById(R.id.myFridgeIcon);
 
 
-        if(ThemeStateService.getCurrentTheme(getActivity()) == ThemeState.DEFAULT) {
+        //if(ThemeStateService.getCurrentTheme(getActivity()) == ThemeState.DEFAULT) {
             myBeersIcon.setImageResource(R.drawable.ic_bottle);
             myRatingsIcon.setImageResource(R.drawable.ic_star_brown_24dp);
             myWishlistIcon.setImageResource(R.drawable.ic_bookmark_brown_24dp);
             myFridgeIcon.setImageResource(R.drawable.ic_refrigerator);
-        } else {
+       /* } else {
             myBeersIcon.setImageResource(R.drawable.ic_bottle_yellow);
             myRatingsIcon.setImageResource(R.drawable.ic_star_yellow_24dp);
             myWishlistIcon.setImageResource(R.drawable.ic_bookmark_yellow_24dp);
             myFridgeIcon.setImageResource(R.drawable.ic_refrigerator_yellow);
-        }
+        }*/
 
         return rootView;
     }

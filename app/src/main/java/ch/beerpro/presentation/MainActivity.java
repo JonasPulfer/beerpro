@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity
          * */
         FloatingActionButton fab = findViewById(R.id.fab);
 
-        if(ThemeStateService.getCurrentTheme(this) == ThemeState.DEFAULT) {
+        //if(ThemeStateService.getCurrentTheme(this) == ThemeState.DEFAULT) {
             fab.setImageResource(R.drawable.ic_photo_camera_brown_24dp);
-        } else {
+       /* } else {
             fab.setImageResource(R.drawable.ic_photo_camera_yellow_24dp);
-        }
+        }*/
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
 
@@ -85,16 +85,16 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        if(ThemeStateService.getCurrentTheme(this) == ThemeState.DEFAULT) {
+        //if(ThemeStateService.getCurrentTheme(this) == ThemeState.DEFAULT) {
             tabLayout.getTabAt(0).setIcon(R.drawable.ic_search_black_24dp);
             tabLayout.getTabAt(1).setIcon(R.drawable.ic_people_black_24dp);
             tabLayout.getTabAt(2).setIcon(R.drawable.ic_person_black_24dp);
-        } else {
+        /*} else {
             tabLayout.getTabAt(0).setIcon(R.drawable.ic_search_yellow_24dp);
             tabLayout.getTabAt(1).setIcon(R.drawable.ic_people_yellow_24dp);
             tabLayout.getTabAt(2).setIcon(R.drawable.ic_person_yellow_24dp);
         }
-
+*/
         /*
          * We want to change the title of the activity depending on the selected fragment. We can do this by
          * listening to the tabLayout's changes and setting the title accordingly:
