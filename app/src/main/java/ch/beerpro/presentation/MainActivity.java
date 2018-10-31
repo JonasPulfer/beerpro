@@ -54,11 +54,11 @@ public class MainActivity extends AppCompatActivity
         /*
          * The following ceremony is need to have the app logo set as the home button.
          * */
-        ThemeStateService.setThemeForToolbar(toolbar, false);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setLogo(R.drawable.beer_glass_icon);
+        ThemeStateService.setThemeForToolbar(toolbar);
 
         setupViewPager(viewPager, tabLayout);
 
