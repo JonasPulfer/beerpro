@@ -50,8 +50,9 @@ public class MainViewModel extends ViewModel implements CurrentUser {
         MutableLiveData<String> currentUserId = new MutableLiveData<>();
         myWishlist = wishlistRepository.getMyWishlist(currentUserId);
         myRatings = ratingsRepository.getMyRatings(currentUserId);
-        myBeers = myBeersRepository.getMyBeers(allBeers, myWishlist, myRatings);
         myFridge = fridgeRepository.getAllFridgeContentInstancesForUser(currentUserId);
+        myBeers = myBeersRepository.getMyBeers(allBeers, myWishlist, myRatings, myFridge);
+
 
         /*
          * Set the current user id, which is used as input for the getMyWishlist and getMyRatings calls above.

@@ -94,4 +94,16 @@ public class MyBeersActivity extends AppCompatActivity implements OnMyBeerItemIn
     public void onWishClickedListener(Beer item) {
         model.toggleItemInWishlist(item.getId());
     }
+
+    @Override
+    public void onRemoveFromFridgeClickedListener(Beer item) {
+     model.toggleUserFridgeItem(item.getId());
+    }
+
+    @Override
+    public void onAddToFridgeClickedListener(Beer item) {
+        model.toggleUserFridgeItem(item.getId());
+    }
+
+
 }

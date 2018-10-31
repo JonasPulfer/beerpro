@@ -192,6 +192,7 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         }
     }
 
+
 //    private void toggleAddToFridgeView(FridgeContent content) {
 //        if (content != null) {
 //            int color = getResources().getColor(R.color.colorPrimary);
