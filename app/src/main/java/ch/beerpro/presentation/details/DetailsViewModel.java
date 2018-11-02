@@ -9,6 +9,7 @@ import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class DetailsViewModel extends ViewModel implements CurrentUser {
         wish = wishlistRepository.getMyWishForBeer(currentUserId, getBeer());
         ratings = ratingsRepository.getRatingsForBeer(beerId);
         fridgeContent = fridgeRepository.getSpecificFridgeContent(currentUserId, getBeer());
+
     }
 
     public LiveData<Beer> getBeer() {
@@ -51,8 +53,8 @@ public class DetailsViewModel extends ViewModel implements CurrentUser {
         return ratings;
     }
 
-    public LiveData<FridgeContent> getFridgeContent() {
-        return fridgeContent;
+    public Task<DocumentSnapshot> getFridgeContentExists(Beer beer) {
+        return fridgeRepository.getFridgeContentExists(getCurrentUser().getUid(), beer.getId());
     }
 
     public void setBeerId(String beerId) {

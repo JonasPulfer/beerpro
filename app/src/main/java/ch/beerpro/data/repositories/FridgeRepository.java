@@ -5,6 +5,7 @@ import android.util.Pair;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -93,9 +94,15 @@ public class FridgeRepository {
        DocumentReference selectedFridgeContent = db.collection(FridgeContent.COLLECTION).document(fridgeContentId);
 
        selectedFridgeContent.update(FridgeContent.FIELD_AMOUNT, newAmount);
-
-
     }
 
+    public Task<DocumentSnapshot> getFridgeContentExists(String userId, String beerId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String fridgeContentId = FridgeContent.generateId(userId, beerId);
+
+        DocumentReference fridgeContentQuery = db.collection(FridgeContent.COLLECTION).document(fridgeContentId);
+        return fridgeContentQuery.get();
+
+    }
 
 }

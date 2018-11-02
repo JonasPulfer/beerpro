@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -79,7 +80,7 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    private ToggleButton addToFridgeButton;
+//    private ToggleButton addToFridgeButton;
 
     private RatingsRecyclerViewAdapter adapter;
 
@@ -135,12 +136,27 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
         dialog.setContentView(view);
         dialog.show();
 
+
         ToggleButton addToFridgeButton = view.findViewById(R.id.addToFridge);
+        model.getFridgeContentExists(model.getBeer().getValue()).addOnCompleteListener(snapshot -> {
+
+            if(snapshot.getResult().exists()){
+                addToFridgeButton.setChecked(true);
+                int color = getResources().getColor(R.color.colorPrimary);
+                setDrawableTint(addToFridgeButton, color);
+            }
+        });
+
         addToFridgeButton.setOnClickListener(button -> {
+
+            if(((ToggleButton) button).isChecked()){
+                int color = getResources().getColor(R.color.colorPrimary);
+                setDrawableTint(addToFridgeButton, color);
+            } else {
+                int color = getResources().getColor(android.R.color.darker_gray);
+                setDrawableTint(addToFridgeButton, color);
+            }
                     model.toggleItemInFridge(model.getBeer().getValue().getId());
-//                    if (!((ToggleButton) button).isChecked()) {
-//                        toggleAddToFridgeView(null);
-//                    }
                 }
         );
 
@@ -174,12 +190,13 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
     @OnClick(R.id.wishlist)
     public void onWishClickedListener(View view) {
         model.toggleItemInWishlist(model.getBeer().getValue().getId());
+        toggleWishlistView(model.getWish().getValue());
         /*
          * We won't get an update from firestore when the wish is removed, so we need to reset the UI state ourselves.
          * */
-        if (!wishlist.isChecked()) {
-            toggleWishlistView(null);
-        }
+//        if (!wishlist.isChecked()) {
+//            toggleWishlistView(null);
+//        }
     }
 
     private void toggleWishlistView(Wish wish) {
@@ -188,6 +205,7 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
             setDrawableTint(wishlist, color);
             wishlist.setChecked(true);
         } else {
+            Log.d("mylog", "I am here!");
             int color = getResources().getColor(android.R.color.darker_gray);
             setDrawableTint(wishlist, color);
             wishlist.setChecked(false);
@@ -207,6 +225,17 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
 //        }
 //    }
 
+//    private void toggleAddToFridgeView (FridgeContent content){
+//        if (content != null){
+//            int color = getResources().getColor(R.color.colorPrimary);
+//            setDrawableTint(addToFridgeButton, color);
+//            addToFridgeButton.setChecked(true);
+//        } else {
+//            int color = getResources().getColor(android.R.color.darker_gray);
+//            setDrawableTint(addToFridgeButton, color);
+//            addToFridgeButton.setChecked(false);
+//        }
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
