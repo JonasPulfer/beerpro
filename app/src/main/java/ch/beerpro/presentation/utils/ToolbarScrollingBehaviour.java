@@ -56,7 +56,7 @@ public class ToolbarScrollingBehaviour<V extends View> extends CoordinatorLayout
         int newStatusbarColor = 0;
         int backButtonColor = 0;
 
-        //if(ThemeStateService.getCurrentTheme() == ThemeState.DEFAULT) {
+        if(ThemeStateService.getCurrentTheme() == ThemeState.DEFAULT) {
             newToolbarColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorPrimary),
                     Math.max(Math.min((int) (255 * alpha), 255), 0));
 
@@ -66,7 +66,7 @@ public class ToolbarScrollingBehaviour<V extends View> extends CoordinatorLayout
             newStatusbarColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorPrimaryDark),
                     Math.max(Math.min((int) (255 * alpha), 255), 0));
 
-            /*backButtonColor = resources.getColor(R.color.colorAccent);
+            backButtonColor = resources.getColor(R.color.colorAccent);
         } else {
             newToolbarColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorPrimary_dark),
                     Math.max(Math.min((int) (255 * alpha), 255), 0));
@@ -78,13 +78,13 @@ public class ToolbarScrollingBehaviour<V extends View> extends CoordinatorLayout
                     Math.max(Math.min((int) (255 * alpha), 255), 0));
 
             backButtonColor = resources.getColor(R.color.colorAccent_dark);
-        }*/
+        }
 
 
         toolbarLayout.setBackgroundColor(newToolbarColor);
         toolbar.setTitleTextColor(newToolbarTextColor);
         statusBar.setBackgroundColor(newStatusbarColor);
 
-        //toolbar.getNavigationIcon().setColorFilter(backButtonColor, PorterDuff.Mode.SRC_ATOP);
+        toolbar.getNavigationIcon().setColorFilter(backButtonColor, PorterDuff.Mode.SRC_ATOP);
     }
 }

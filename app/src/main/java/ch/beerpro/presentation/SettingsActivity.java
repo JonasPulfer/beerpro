@@ -5,6 +5,7 @@ import ch.beerpro.R;
 
 import android.os.Bundle;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import ch.beerpro.domain.utils.ThemeState;
@@ -34,5 +35,10 @@ public class SettingsActivity extends AppCompatActivity {
         darkmodeCheckbox.setOnCheckedChangeListener((view, dark) -> {
             ThemeStateService.changeToTheme(this, dark ? ThemeState.DARK : ThemeState.DEFAULT);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
