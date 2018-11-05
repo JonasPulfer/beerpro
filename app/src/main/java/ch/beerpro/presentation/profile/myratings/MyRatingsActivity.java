@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
+import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.details.DetailsActivity;
 import lombok.val;
 
@@ -32,12 +33,15 @@ public class MyRatingsActivity extends AppCompatActivity implements OnMyRatingIt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeStateService.setThemeForActivity(this);
         setContentView(R.layout.activity_my_ratings);
         ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.title_activity_myratings));
 
+        ThemeStateService.setThemeForToolbar(toolbar);
 
         model = ViewModelProviders.of(this).get(MyRatingsViewModel.class);
         model.getMyRatingsWithWishes().observe(this, this::updateMyRatings);

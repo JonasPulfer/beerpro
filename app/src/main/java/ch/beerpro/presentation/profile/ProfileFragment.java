@@ -15,14 +15,18 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.beerpro.GlideApp;
 import ch.beerpro.R;
+import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
+import ch.beerpro.domain.utils.ThemeState;
+import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.MainViewModel;
 import ch.beerpro.presentation.profile.mybeers.MyBeersActivity;
 import ch.beerpro.domain.models.MyBeer;
 import ch.beerpro.presentation.profile.myratings.MyRatingsActivity;
+import ch.beerpro.presentation.profile.myfridge.MyFridgeActivity;
 import ch.beerpro.presentation.profile.mywishlist.WishlistActivity;
-import com.bumptech.glide.Glide;
+
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -71,6 +75,8 @@ public class ProfileFragment extends Fragment {
         model.getMyWishlist().observe(this, this::updateWishlistCount);
         model.getMyRatings().observe(this, this::updateRatingsCount);
         model.getMyBeers().observe(this, this::updateMyBeersCount);
+        model.getMyFridge().observe(this, this::updateFridgeContentCount);
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -81,6 +87,24 @@ public class ProfileFragment extends Fragment {
             Uri photoUrl = user.getPhotoUrl();
             GlideApp.with(this).load(photoUrl).apply(new RequestOptions().circleCrop()).into(userProfileImageView);
         }
+
+        ImageView myBeersIcon = rootView.findViewById(R.id.myBeersIcon);
+        ImageView myRatingsIcon = rootView.findViewById(R.id.myRatingsIcon);
+        ImageView myWishlistIcon = rootView.findViewById(R.id.myWishlistIcon);
+        ImageView myFridgeIcon = rootView.findViewById(R.id.myFridgeIcon);
+
+
+        //if(ThemeStateService.getCurrentTheme(getActivity()) == ThemeState.DEFAULT) {
+            myBeersIcon.setImageResource(R.drawable.ic_bottle);
+            myRatingsIcon.setImageResource(R.drawable.ic_star_brown_24dp);
+            myWishlistIcon.setImageResource(R.drawable.ic_bookmark_brown_24dp);
+            myFridgeIcon.setImageResource(R.drawable.ic_refrigerator);
+       /* } else {
+            myBeersIcon.setImageResource(R.drawable.ic_bottle_yellow);
+            myRatingsIcon.setImageResource(R.drawable.ic_star_yellow_24dp);
+            myWishlistIcon.setImageResource(R.drawable.ic_bookmark_yellow_24dp);
+            myFridgeIcon.setImageResource(R.drawable.ic_refrigerator_yellow);
+        }*/
 
         return rootView;
     }
@@ -107,12 +131,22 @@ public class ProfileFragment extends Fragment {
         startActivity(intent);
     }
 
+    @OnClick(R.id.myFridge)
+    public void handleMyFridgeClick(View view){
+        Intent intent = new Intent(getActivity(), MyFridgeActivity.class);
+        startActivity(intent);
+    }
+
     private void updateRatingsCount(List<Rating> ratings) {
         myRatingsCount.setText(String.valueOf(ratings.size()));
     }
 
     private void updateWishlistCount(List<Wish> wishes) {
         myWishlistCount.setText(String.valueOf(wishes.size()));
+    }
+
+    private void updateFridgeContentCount(List<FridgeContent> content){
+        myFridgeCount.setText(String.valueOf(content.size()));
     }
 
 }

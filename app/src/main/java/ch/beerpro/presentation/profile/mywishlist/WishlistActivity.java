@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
 import ch.beerpro.domain.models.Wish;
+import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.details.DetailsActivity;
 import lombok.val;
 
@@ -39,12 +40,15 @@ public class WishlistActivity extends AppCompatActivity implements OnWishlistIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeStateService.setThemeForActivity(this);
         setContentView(R.layout.activity_my_wishlist);
         ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.title_activity_wishlist));
 
+        ThemeStateService.setThemeForToolbar(toolbar);
 
         model = ViewModelProviders.of(this).get(WishlistViewModel.class);
         model.getMyWishlistWithBeers().observe(this, this::updateWishlist);
@@ -92,5 +96,10 @@ public class WishlistActivity extends AppCompatActivity implements OnWishlistIte
     @Override
     public void onWishClickedListener(Beer beer) {
         model.toggleItemInWishlist(beer.getId());
+    }
+
+    @Override
+    public void onAddToFridgeClickedListener(String beerId) {
+        model.toggleUserFridgeItem(beerId);
     }
 }

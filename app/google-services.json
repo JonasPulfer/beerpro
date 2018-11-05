@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "579676213491-oo7cs5n0hdbuc75elv2nv1qtq3jmmt8h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.beerpro",
+            "certificate_hash": "df91a31b9a9c4c6124408cbe157255bdd299c413"
+          }
+        },
+        {
           "client_id": "579676213491-rnom61a2ki4u6ft390v6hbisoc785sgj.apps.googleusercontent.com",
           "client_type": 3
         }

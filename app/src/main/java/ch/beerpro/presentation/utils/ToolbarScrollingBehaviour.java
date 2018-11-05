@@ -2,6 +2,8 @@ package ch.beerpro.presentation.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +14,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 import ch.beerpro.R;
+import ch.beerpro.domain.utils.ThemeState;
+import ch.beerpro.domain.utils.ThemeStateService;
 
 public class ToolbarScrollingBehaviour<V extends View> extends CoordinatorLayout.Behavior<V> {
 
@@ -47,17 +51,40 @@ public class ToolbarScrollingBehaviour<V extends View> extends CoordinatorLayout
 
         Resources resources = child.getResources();
 
-        int newToolbarColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorPrimary),
-                Math.max(Math.min((int) (255 * alpha), 255), 0));
+        int newToolbarColor = 0;
+        int newToolbarTextColor = 0;
+        int newStatusbarColor = 0;
+        int backButtonColor = 0;
+
+        if(ThemeStateService.getCurrentTheme() == ThemeState.DEFAULT) {
+            newToolbarColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorPrimary),
+                    Math.max(Math.min((int) (255 * alpha), 255), 0));
+
+            newToolbarTextColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorAccent),
+                    Math.max(Math.min((int) (255 * alpha), 255), 0));
+
+            newStatusbarColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorPrimaryDark),
+                    Math.max(Math.min((int) (255 * alpha), 255), 0));
+
+            backButtonColor = resources.getColor(R.color.colorAccent);
+        } else {
+            newToolbarColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorPrimary_dark),
+                    Math.max(Math.min((int) (255 * alpha), 255), 0));
+
+            newToolbarTextColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorAccent_dark),
+                    Math.max(Math.min((int) (255 * alpha), 255), 0));
+
+            newStatusbarColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorPrimaryDark_dark),
+                    Math.max(Math.min((int) (255 * alpha), 255), 0));
+
+            backButtonColor = resources.getColor(R.color.colorAccent_dark);
+        }
+
+
         toolbarLayout.setBackgroundColor(newToolbarColor);
-
-        int newToolbarTextColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorAccent),
-                Math.max(Math.min((int) (255 * alpha), 255), 0));
         toolbar.setTitleTextColor(newToolbarTextColor);
-
-        int newStatusbarColor = ColorUtils.setAlphaComponent(resources.getColor(R.color.colorPrimaryDark),
-                Math.max(Math.min((int) (255 * alpha), 255), 0));
         statusBar.setBackgroundColor(newStatusbarColor);
 
+        toolbar.getNavigationIcon().setColorFilter(backButtonColor, PorterDuff.Mode.SRC_ATOP);
     }
 }

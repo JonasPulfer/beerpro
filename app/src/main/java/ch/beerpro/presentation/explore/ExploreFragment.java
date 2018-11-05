@@ -2,19 +2,29 @@ package ch.beerpro.presentation.explore;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.beerpro.R;
+import ch.beerpro.domain.utils.ThemeState;
+import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.explore.search.SearchActivity;
 import ch.beerpro.presentation.utils.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.Objects;
 
 /**
  * This fragment is the first fragment shown in the {@link ch.beerpro.presentation.MainActivity}. It lets users
@@ -54,6 +64,15 @@ public class ExploreFragment extends Fragment {
         adapter.addFragment(new BeerManufacturersFragment(), "Brauerei");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        // Hardcoded because of API-Version
+        Drawable img;
+        if(ThemeStateService.getCurrentTheme() == ThemeState.DEFAULT) {
+            img = getContext().getResources().getDrawable(R.drawable.ic_search_black_24dp);
+        } else {
+            img = getContext().getResources().getDrawable(R.drawable.ic_search_yellow_24dp);
+        }
+        ((TextView)rootView.findViewById(R.id.beerSearchButton)).setCompoundDrawablesWithIntrinsicBounds( img, null, null, null);
 
         return rootView;
     }

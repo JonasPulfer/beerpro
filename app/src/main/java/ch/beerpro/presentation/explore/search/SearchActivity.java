@@ -10,10 +10,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
+import ch.beerpro.domain.utils.ThemeState;
+import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.details.DetailsActivity;
 import ch.beerpro.presentation.explore.search.beers.SearchResultFragment;
 import ch.beerpro.presentation.explore.search.suggestions.SearchSuggestionsFragment;
@@ -35,9 +38,18 @@ public class SearchActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeStateService.setThemeForActivity(this);
         setContentView(R.layout.activity_search);
 
         searchEditText = findViewById(R.id.searchEditText);
+        ImageView searchImageView = findViewById(R.id.searchImageView);
+        if(ThemeStateService.getCurrentTheme(this) == ThemeState.DEFAULT) {
+            searchEditText.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+            searchImageView.setImageResource(R.drawable.ic_search_black_24dp);
+        } else {
+            searchEditText.setTextColor(ContextCompat.getColor(this, R.color.colorAccent_dark));
+            searchImageView.setImageResource(R.drawable.ic_search_yellow_24dp);
+        }
         searchEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 String text = searchEditText.getText().toString();
@@ -108,4 +120,16 @@ public class SearchActivity extends AppCompatActivity
     public void onWishClickedListener(Beer item) {
         searchViewModel.toggleItemInWishlist(item.getId());
     }
+
+    @Override
+    public void onRemoveFromFridgeClickedListener(Beer item) {
+        //we don't need that in the search-context
+    }
+
+    @Override
+    public void onAddToFridgeClickedListener(Beer item) {
+        //we don't need that in the search-context
+    }
+
+
 }

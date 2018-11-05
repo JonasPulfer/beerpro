@@ -15,6 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ch.beerpro.R;
 import ch.beerpro.presentation.details.DetailsActivity;
+import ch.beerpro.domain.utils.ThemeState;
+import ch.beerpro.domain.utils.ThemeStateService;
 import ch.beerpro.presentation.explore.BeerCategoriesFragment;
 import ch.beerpro.presentation.explore.BeerManufacturersFragment;
 import ch.beerpro.presentation.explore.ExploreFragment;
@@ -27,6 +29,8 @@ import ch.beerpro.presentation.utils.ViewPagerAdapter;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeStateService.setThemeForActivity(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -64,8 +69,22 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setLogo(R.drawable.beer_glass_icon);
+        ThemeStateService.setThemeForToolbar(toolbar);
 
         setupViewPager(viewPager, tabLayout);
+
+        /*
+         * Just a placeholder for your own ideas...
+         * */
+        FloatingActionButton fab = findViewById(R.id.fab);
+
+        //if(ThemeStateService.getCurrentTheme(this) == ThemeState.DEFAULT) {
+            fab.setImageResource(R.drawable.ic_photo_camera_brown_24dp);
+       /* } else {
+            fab.setImageResource(R.drawable.ic_photo_camera_yellow_24dp);
+        }*/
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
     }
 
     private void setupViewPager(ViewPager viewPager, TabLayout tabLayout) {
@@ -75,10 +94,17 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ProfileFragment());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_search_black_24dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_people_black_24dp);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_person_black_24dp);
 
+        //if(ThemeStateService.getCurrentTheme(this) == ThemeState.DEFAULT) {
+            tabLayout.getTabAt(0).setIcon(R.drawable.ic_search_black_24dp);
+            tabLayout.getTabAt(1).setIcon(R.drawable.ic_people_black_24dp);
+            tabLayout.getTabAt(2).setIcon(R.drawable.ic_person_black_24dp);
+        /*} else {
+            tabLayout.getTabAt(0).setIcon(R.drawable.ic_search_yellow_24dp);
+            tabLayout.getTabAt(1).setIcon(R.drawable.ic_people_yellow_24dp);
+            tabLayout.getTabAt(2).setIcon(R.drawable.ic_person_yellow_24dp);
+        }
+*/
         /*
          * We want to change the title of the activity depending on the selected fragment. We can do this by
          * listening to the tabLayout's changes and setting the title accordingly:
@@ -116,6 +142,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_logout:
                 logout();
                 return true;
+            case R.id.action_settings:
+                showSettingsActivity();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -127,6 +156,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             finish();
         });
+    }
+
+    private void showSettingsActivity() {
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     @Override

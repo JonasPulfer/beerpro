@@ -229,9 +229,9 @@
                                 android:layout_weight="1"
                                 android:drawableTop="@drawable/ic_bookmark_brown_24dp"
                                 android:drawableTint="@android:color/darker_gray"
-                                android:textOff="Wunschliste"
-                                android:textOn="Wunschliste"
                                 android:textColor="@android:color/darker_gray"
+                                android:textOff="Wunschliste hinzufügen"
+                                android:textOn="von Wunschliste entfernen"
                                 android:textSize="10sp" />
 
                             <View

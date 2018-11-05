@@ -8,4 +8,8 @@ public interface OnMyBeerItemInteractionListener {
     void onMoreClickedListener(ImageView photo, Beer item);
 
     void onWishClickedListener(Beer item);
+
+    void onRemoveFromFridgeClickedListener (Beer item);
+
+    void onAddToFridgeClickedListener(Beer item);
 }

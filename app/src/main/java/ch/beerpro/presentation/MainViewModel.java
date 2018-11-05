@@ -1,11 +1,13 @@
 package ch.beerpro.presentation;
 
+import android.util.Log;
 import android.util.Pair;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import ch.beerpro.data.repositories.*;
 import ch.beerpro.domain.models.Beer;
+import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.domain.models.MyBeer;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
@@ -24,10 +26,12 @@ public class MainViewModel extends ViewModel implements CurrentUser {
     private final LikesRepository likesRepository;
     private final RatingsRepository ratingsRepository;
     private final WishlistRepository wishlistRepository;
+    private final FridgeRepository fridgeRepository;
 
     private final LiveData<List<Wish>> myWishlist;
     private final LiveData<List<Rating>> myRatings;
     private final LiveData<List<MyBeer>> myBeers;
+    private final LiveData<List<FridgeContent>> myFridge;
 
     public MainViewModel() {
         /*
@@ -37,14 +41,18 @@ public class MainViewModel extends ViewModel implements CurrentUser {
         likesRepository = new LikesRepository();
         wishlistRepository = new WishlistRepository();
         ratingsRepository = new RatingsRepository();
+        fridgeRepository = new FridgeRepository();
         MyBeersRepository myBeersRepository = new MyBeersRepository();
+
 
         LiveData<List<Beer>> allBeers = beersRepository.getAllBeers();
 
         MutableLiveData<String> currentUserId = new MutableLiveData<>();
         myWishlist = wishlistRepository.getMyWishlist(currentUserId);
         myRatings = ratingsRepository.getMyRatings(currentUserId);
-        myBeers = myBeersRepository.getMyBeers(allBeers, myWishlist, myRatings);
+        myFridge = fridgeRepository.getAllFridgeContentInstancesForUser(currentUserId);
+        myBeers = myBeersRepository.getMyBeers(allBeers, myWishlist, myRatings, myFridge);
+
 
         /*
          * Set the current user id, which is used as input for the getMyWishlist and getMyRatings calls above.
@@ -67,6 +75,8 @@ public class MainViewModel extends ViewModel implements CurrentUser {
     public LiveData<List<Wish>> getMyWishlist() {
         return myWishlist;
     }
+
+   public LiveData<List<FridgeContent>> getMyFridge() { return myFridge; };
 
     public LiveData<List<String>> getBeerCategories() {
         return beersRepository.getBeerCategories();

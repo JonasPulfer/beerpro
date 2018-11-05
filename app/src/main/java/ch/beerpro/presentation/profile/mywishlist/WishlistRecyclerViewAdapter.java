@@ -75,6 +75,9 @@ public class WishlistRecyclerViewAdapter extends ListAdapter<Pair<Wish, Beer>, W
         @BindView(R.id.addedAt)
         TextView addedAt;
 
+        @BindView(R.id.addToFridge)
+        Button addToFridge;
+
         @BindView(R.id.removeFromWishlist)
         Button remove;
 
@@ -98,6 +101,7 @@ public class WishlistRecyclerViewAdapter extends ListAdapter<Pair<Wish, Beer>, W
             String formattedDate =
                     DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT).format(wish.getAddedAt());
             addedAt.setText(formattedDate);
+            addToFridge.setOnClickListener(v -> listener.onAddToFridgeClickedListener(item.getId()));
             remove.setOnClickListener(v -> listener.onWishClickedListener(item));
         }
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import ch.beerpro.data.repositories.*;
 import ch.beerpro.domain.models.Beer;
+import ch.beerpro.domain.models.FridgeContent;
 import ch.beerpro.domain.models.Rating;
 import ch.beerpro.domain.models.Wish;
 import ch.beerpro.domain.models.MyBeer;
@@ -24,6 +25,7 @@ public class MyBeersViewModel extends ViewModel implements CurrentUser {
     private final MutableLiveData<String> searchTerm = new MutableLiveData<>();
 
     private final WishlistRepository wishlistRepository;
+    private final FridgeRepository fridgeRepository;
     private final LiveData<List<MyBeer>> myFilteredBeers;
 
     public MyBeersViewModel() {
@@ -32,13 +34,15 @@ public class MyBeersViewModel extends ViewModel implements CurrentUser {
         BeersRepository beersRepository = new BeersRepository();
         MyBeersRepository myBeersRepository = new MyBeersRepository();
         RatingsRepository ratingsRepository = new RatingsRepository();
+        fridgeRepository = new FridgeRepository();
 
         LiveData<List<Beer>> allBeers = beersRepository.getAllBeers();
         MutableLiveData<String> currentUserId = new MutableLiveData<>();
         LiveData<List<Wish>> myWishlist = wishlistRepository.getMyWishlist(currentUserId);
         LiveData<List<Rating>> myRatings = ratingsRepository.getMyRatings(currentUserId);
+        LiveData<List<FridgeContent>> myFridge = fridgeRepository.getAllFridgeContentInstancesForUser(currentUserId);
 
-        LiveData<List<MyBeer>> myBeers = myBeersRepository.getMyBeers(allBeers, myWishlist, myRatings);
+        LiveData<List<MyBeer>> myBeers = myBeersRepository.getMyBeers(allBeers, myWishlist, myRatings, myFridge);
 
         myFilteredBeers = map(zip(searchTerm, myBeers), MyBeersViewModel::filter);
 
@@ -69,6 +73,10 @@ public class MyBeersViewModel extends ViewModel implements CurrentUser {
 
     public void toggleItemInWishlist(String beerId) {
         wishlistRepository.toggleUserWishlistItem(getCurrentUser().getUid(), beerId);
+    }
+
+    public void toggleUserFridgeItem(String beerId){
+        fridgeRepository.toggleUserFridgeItem(getCurrentUser().getUid(), beerId);
     }
 
     public void setSearchTerm(String searchTerm) {

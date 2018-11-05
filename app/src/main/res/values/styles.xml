@@ -5,15 +5,13 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/windowBackgroundColor</item>
-
+        <item name="colorBackground">@color/windowBackgroundColor</item>
         <!-- enable window content transitions -->
-        <item name="android:windowActivityTransitions">true</item>
 
         <!-- specify shared element transitions -->
         <item name="android:windowSharedElementEnterTransition">@transition/change_view_transform</item>
         <item name="android:windowSharedElementExitTransition">@transition/change_view_transform</item>
     </style>
-
 
     <style name="DetailsPageTheme" parent="AppTheme">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -66,5 +64,30 @@
         <item name="tabPaddingEnd">6dp</item>
         <!--<item name="android:layout_marginLeft">64dp</item>
         <item name="android:layout_marginRight">64dp</item>-->
+    </style>
+
+    <style name="Theme.AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar" />
+
+    <style name="AppTheme_Dark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary_dark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_dark</item>
+        <item name="colorAccent">@color/colorAccent_dark</item>
+        <item name="android:windowBackground">@color/windowBackgroundColor_dark</item>
+        <item name="colorBackground">@color/windowBackgroundColor_dark</item>
+
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify shared element transitions -->
+        <item name="android:windowSharedElementEnterTransition">@transition/change_view_transform</item>
+        <item name="android:windowSharedElementExitTransition">@transition/change_view_transform</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark_dark</item>
+    </style>
+
+    <style name="ToolBarStyle_Dark" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@color/colorAccent_dark</item>
+        <item name="android:textColorSecondary">@color/colorAccent_dark</item>
+        <item name="actionMenuTextColor">@color/colorAccent_dark</item>
+        <item name="titleMarginStart">@dimen/title_margin_start</item>
     </style>
 </resources>
